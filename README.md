@@ -196,4 +196,4 @@ Detailed report available in `/docs`
 
 ## 👨‍💻 Author
 Harsh Sharma  
-MSc Embedded Systems Engineering
+MSc Mecchatromnics and Robotics 
