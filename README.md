@@ -1,86 +1,198 @@
-**Updated README with project details**# In-Pipe Inspection Robot
+# 🚀 In-Pipe Inspection Robot
 
-## 📌 Overview
-This project focuses on the design and development of a compact in-pipe inspection robot capable of navigating pipes with varying diameters (50 mm to 90 mm).
+## 📌 Project Overview
+This project presents the design and development of a compact, adaptive in-pipe inspection robot capable of operating within pipe diameters ranging from **50 mm to 90 mm**.
 
-The robot incorporates an automated chassis mechanism that allows expansion and contraction using a lead screw-driven system. A vibration motor enables propulsion, allowing the robot to move through pipes efficiently.
-
----
-
-## 🎯 Aim
-To design, build, and test a propulsion-based in-pipe robot with an automated chassis capable of adapting to multiple pipe diameters.
+The system integrates **mechanical design, embedded control, and real-world testing** to achieve reliable locomotion inside constrained environments.
 
 ---
 
-## ✅ Objectives
-- Design a 3D model using SolidWorks
-- Develop an automated chassis mechanism
-- Implement embedded control using Arduino Nano
-- Integrate motors, encoder, and motor driver
-- Evaluate performance in different pipe diameters
+## 🎯 Key Highlights
+- Adaptive chassis using **lead screw + scissor mechanism**
+- Operates across **multiple pipe diameters**
+- Embedded control using **Arduino Nano**
+- Hybrid locomotion using **vibration motor**
+- Fully designed, simulated, and prototyped
 
 ---
 
-## ⚙️ System Components
-- Arduino Nano (ATmega328P)
-- TB6612FNG Motor Driver
-- Micro Metal DC Motor (Lead Screw Actuation)
-- Vibration Motor (Locomotion)
-- Rotary Encoder (Position Feedback)
-- Power Supply
+## 🧠 System Architecture
+
+```
+          +----------------------+
+          |   Arduino Nano       |
+          +----------+-----------+
+                     |
+          +----------v-----------+
+          |  Motor Driver        |
+          +----------+-----------+
+                     |
+     +---------------+----------------+
+     |                                |
++----v-----+                    +-----v-----+
+| DC Motor |                    | Vib Motor |
+| (Lead    |                    | (Motion)  |
+| Screw)   |                    +-----------+
++----------+
+```
 
 ---
 
-## 🧠 Working Principle
-The robot uses a lead screw mechanism driven by a DC motor to expand and contract its chassis. This creates an umbrella-like X-shaped scissor mechanism that adapts to pipe diameters.
+## ⚙️ Working Principle
 
-A vibration motor generates oscillations, enabling forward movement inside the pipe.
+### 1. Chassis Adaptation
+- A **lead screw mechanism** converts rotational motion into linear motion  
+- This drives an **X-shaped scissor structure**
+- Enables expansion/contraction based on pipe diameter
+
+### 2. Locomotion
+- A **vibration motor** generates oscillatory motion
+- Friction between robot and pipe wall produces forward movement
 
 ---
 
 ## 🏗️ Mechanical Design
-- X-shaped scissor mechanism for expansion/contraction
-- Lead screw converts rotational motion to linear motion
-- 3D printed parts (ABS material)
-- Compact and lightweight design
+
+- Scissor-based expansion mechanism
+- Lead screw driven linear actuation
+- Designed in **SolidWorks**
+- 3D printed using **ABS material**
+- Optimized for compactness and adaptability
 
 ---
 
 ## 🔌 Electronics & Control
-- Arduino Nano controls motor operations
-- Motor driver regulates speed and direction
-- Encoder provides feedback for precise positioning
-- Circuit simulated using Tinkercad before implementation
+
+| Component              | Function                          |
+|----------------------|----------------------------------|
+| Arduino Nano         | Main controller                  |
+| TB6612FNG Driver     | Motor control                    |
+| DC Geared Motor      | Chassis expansion                |
+| Vibration Motor      | Robot locomotion                 |
+| Encoder              | Position feedback                |
 
 ---
 
-## 📊 Results
-- Successfully navigated pipes of 50 mm, 60 mm, and 90 mm
-- Higher speed observed in larger diameters due to reduced friction
-- Maximum expansion speed: ~2.33 mm/s
-- Maximum contraction speed: ~2.55 mm/s
+## 💻 Arduino Control Logic
+
+```cpp
+// Motor Pins
+int motorA1 = 5;
+int motorA2 = 6;
+
+// Vibration motor pin
+int vibMotor = 9;
+
+void setup() {
+  pinMode(motorA1, OUTPUT);
+  pinMode(motorA2, OUTPUT);
+  pinMode(vibMotor, OUTPUT);
+}
+
+// Expand chassis
+void expand() {
+  digitalWrite(motorA1, HIGH);
+  digitalWrite(motorA2, LOW);
+}
+
+// Contract chassis
+void contract() {
+  digitalWrite(motorA1, LOW);
+  digitalWrite(motorA2, HIGH);
+}
+
+// Stop motor
+void stopMotor() {
+  digitalWrite(motorA1, LOW);
+  digitalWrite(motorA2, LOW);
+}
+
+// Move forward using vibration
+void moveForward() {
+  digitalWrite(vibMotor, HIGH);
+}
+
+void loop() {
+  expand();
+  delay(3000);
+
+  stopMotor();
+  delay(1000);
+
+  moveForward();
+  delay(5000);
+}
+```
+
+---
+
+## 📊 Performance Results
+
+- Successfully tested in:
+  - 50 mm pipe
+  - 60 mm pipe
+  - 90 mm pipe
+
+- Observations:
+  - Higher speed in larger diameters
+  - Reduced friction improves motion efficiency
+
+- Measured Performance:
+  - Expansion speed: ~2.33 mm/s
+  - Contraction speed: ~2.55 mm/s
+
+---
+
+## 📷 Project Visuals
+
+### 🔧 CAD Model
+(Add images in `/images` and link here)
+
+### 🔌 Circuit Design
+(Add circuit diagrams here)
+
+### 🤖 Prototype
+(Add real robot photos here)
+
+---
+
+## 📁 Project Structure
+
+```
+in-pipe-inspection-robot/
+│── README.md
+│── docs/
+│   └── project_report.pdf
+│── src/
+│   └── main.ino
+│── images/
+│── results/
+```
 
 ---
 
 ## ⚠️ Limitations
-- Wired configuration limits mobility
-- Cannot operate in curved or vertical pipes
-- No inspection sensors (camera, gas, ultrasonic)
+
+- Wired system limits range
+- Not suitable for curved/vertical pipes
+- No inspection sensors integrated
 
 ---
 
-## 🚀 Future Improvements
-- Add sensors for inspection (camera, gas, ultrasonic)
-- Wireless control (WiFi/Bluetooth)
-- Improve navigation in curved pipes
-- Add bidirectional movement
+## 🚀 Future Work
+
+- Camera + sensor integration
+- Wireless control system
+- Autonomous navigation
+- Improved mobility in complex pipe networks
 
 ---
 
 ## 📄 Documentation
-Full project report available in `/docs`.
+Detailed report available in `/docs`
 
 ---
 
 ## 👨‍💻 Author
-Harsh Sharma
+Harsh Sharma  
+MSc Embedded Systems Engineering
