@@ -1,4 +1,5 @@
 # 🚀 In-Pipe Inspection Robot
+A compact adaptive robotic system designed for inspection and navigation inside constrained pipe environments.
 
 ## 📌 Project Overview
 This project presents the design and development of a compact, adaptive in-pipe inspection robot capable of operating within pipe diameters ranging from **50 mm to 90 mm**.
